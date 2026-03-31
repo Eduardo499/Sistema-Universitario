@@ -32,10 +32,6 @@ Thumbs.db
 .vscode/
 .idea/
 
-# Migrações (opcional - cuidado!)
-**/migrations/*.py
-!**/migrations/__init__.py
-
 # Cache
 .cache/
 .pytest_cache/
