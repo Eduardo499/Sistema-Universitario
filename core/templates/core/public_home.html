@@ -1,11 +1,28 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
 </head>
 <body>
-    <h1>Home page</h1>
+    
+    <nav>
+        <h2>Sistema Universitário</h2>
+        <button href="/login"><strong>Login</strong></button>
+    </nav>
+
+    <section>
+        <h1>Sistema Universitário Integrado</h1>
+        <p>Gerencie disciplinas, notas e comunicação em um só lugar.</p>
+        <button href="/login"><strong>Acessar sistema</strong></button>
+    </section>
+
+    <flooter>
+        <p>&copy; 2026 Sistema Universitário. Todos os direitos reservados.</p>
+    </footer>
 </body>
 </html>

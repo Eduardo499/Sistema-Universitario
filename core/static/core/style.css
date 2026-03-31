@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #223240;
+    color: #49A671;
+    
+}
+
+nav {
+    text-align: center;
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+    border: 1px solid #93D94E;
+    border-radius: 5px;
+    text-align: center;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #626262;
+}
+
+button {
+    background-color: #49A671;
+    color: #9FD996;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
