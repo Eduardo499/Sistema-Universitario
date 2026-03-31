@@ -12,16 +12,16 @@
     
     <nav>
         <h2>Sistema Universitário</h2>
-        <button href="/login"><strong>Login</strong></button>
+        <a href="{% url 'accounts:login' %}"><button><strong>Login</strong></button></a>
     </nav>
 
     <section>
         <h1>Sistema Universitário Integrado</h1>
         <p>Gerencie disciplinas, notas e comunicação em um só lugar.</p>
-        <button href="/login"><strong>Acessar sistema</strong></button>
+        <a href="{% url 'accounts:login' %}"><button><strong>Acessar sistema</strong></button></a>
     </section>
 
-    <flooter>
+    <footer>
         <p>&copy; 2026 Sistema Universitário. Todos os direitos reservados.</p>
     </footer>
 </body>
