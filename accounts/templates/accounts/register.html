@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <div class="register-container">
+        <h1>Registrar nova conta</h1>
+
+        <form method="post">
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label>Tipo de Usuário</label>
+                {{ form.role }}
+            </div>
+            <div class="form-group">
+                <label>Matrícula:</label>
+                {{ form.matricula }}
+            </div>
+            <div class="form-group">
+                <label>Nível:</label>
+                {{ form.nivel }}
+            </div>
+            <div class="form-group">
+                <label>Nome:</label>
+                {{ form.nome }}
+            </div>
+            <div class="form-group">
+                <label>Data de Nascimento:</label>
+                {{ form.data_nascimento }}
+            <div class="form-group">
+                <label>Email:</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group">
+                <label>Usuário:</label>
+                {{ form.usuario }}
+            </div>
+            <div class="form-group">
+                <label>Senha:</label>
+                {{ form.password1 }}
+            </div>
+            <div class="form-group">
+                <label>Confirmar Senha:</label>
+                {{ form.password2 }}
+            </div>
+            <button type="submit"><strong>Registrar</strong></button>
+        </form>
+
+        <p>Já tem uma conta? <a href="{% url 'accounts:login' %}">Entre aqui</a></p>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Sistema Universitário. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
