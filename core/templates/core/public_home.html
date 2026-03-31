@@ -9,17 +9,12 @@
     <link rel="stylesheet" href="{% static 'core/style.css' %}">
 </head>
 <body>
-    
-    <nav>
-        <h2>Sistema Universitário</h2>
-        <a href="{% url 'accounts:login' %}"><button><strong>Login</strong></button></a>
-    </nav>
 
-    <section>
+    <div class="home-container">
         <h1>Sistema Universitário Integrado</h1>
         <p>Gerencie disciplinas, notas e comunicação em um só lugar.</p>
         <a href="{% url 'accounts:login' %}"><button><strong>Acessar sistema</strong></button></a>
-    </section>
+    </div>
 
     <footer>
         <p>&copy; 2026 Sistema Universitário. Todos os direitos reservados.</p>
