@@ -16,17 +16,37 @@
             {% csrf_token %}
 
             <div class="form-group">
-                <label>Tipo de Usuário</label>
+                <label>Tipo de Usuário:</label>
                 {{ form.role }}
             </div>
             <div class="form-group">
                 <label>Matrícula:</label>
                 {{ form.matricula }}
             </div>
-            <div class="form-group">
+
+            <div class="form-group", id="nivel-group", style="display: none;">
                 <label>Nível:</label>
                 {{ form.nivel }}
             </div>
+
+            <script>
+                const roleSelect = document.querySelector("#id_role");
+                const nivelGroups = document.querySelector("#nivel-group");
+
+                function toggleNivel() {
+                    if (roleSelect.value == 'aluno') {
+                        console.log("ALUNO SELECTED"); // Debug log
+                        nivelGroups.style.display = 'flex';
+                    } else {
+                        nivelGroups.style.display = 'none';
+                        console.log("NOT ALUNO SELECTED"); // Debug log
+                    }
+                }
+
+                roleSelect.addEventListener('change', toggleNivel);
+                toggleNivel();
+            </script>
+
             <div class="form-group">
                 <label>Nome:</label>
                 {{ form.nome }}
