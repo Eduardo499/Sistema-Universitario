@@ -10,5 +10,9 @@
 </head>
 <body>
     Oi, {{ user.username }}! Bem-vindo ao seu painel de professor. Aqui você pode gerenciar suas disciplinas, lançar notas e se comunicar com seus alunos.
+    <form method="post" action="{% url 'accounts:logout' %}">
+        {% csrf_token %}
+        <button type="submit">Sair</button>
+    </form>
 </body>
 </html>
