@@ -94,6 +94,72 @@ button:hover {
     color: #347355;
 }
 
+.admin-container {
+    background: #1e293b;
+    padding: 40px;
+    border-radius: 10px;
+    width: 500px;
+
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.admin-container h1 {
+    color: #49A671;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.admin-container a {
+    color: #93D94E;
+    text-decoration: none;
+    margin-top: 15px;
+}
+.admin-container a:hover {
+    color: #347355;
+}
+
+.admin-subtitle {
+    color: #49A671;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.admin-grid
+    {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+}
+
+.admin-card {
+    background: #2d1515;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+.admin-card:hover {
+    background: #3e1f1f;
+}
+
+.admin-card h2 {
+    color: #49A671;
+    margin-bottom: 10px;
+}
+
+.admin-card img {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+.admin-card p {
+    color: #9FD996;
+    font-size: 0.95rem;
+}
+
 .form-group {
     display: flex;
     flex-direction: column;
