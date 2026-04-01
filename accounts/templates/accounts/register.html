@@ -12,7 +12,7 @@
     <div class="register-container">
         <h1>Registrar nova conta</h1>
 
-        <form method="post">
+        <form method="post" autocomplete="off">
             {% csrf_token %}
 
             <div class="form-group">
@@ -35,11 +35,9 @@
 
                 function toggleNivel() {
                     if (roleSelect.value == 'aluno') {
-                        console.log("ALUNO SELECTED"); // Debug log
                         nivelGroups.style.display = 'flex';
                     } else {
                         nivelGroups.style.display = 'none';
-                        console.log("NOT ALUNO SELECTED"); // Debug log
                     }
                 }
 
