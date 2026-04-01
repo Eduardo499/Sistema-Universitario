@@ -29,3 +29,6 @@ def profile(request):
         return render(request, 'accounts/admin_home.html', {'user': user})
     else:
         return redirect('accounts:login')
+    
+def admin_home(request):
+    return render(request, 'accounts/admin_home.html')

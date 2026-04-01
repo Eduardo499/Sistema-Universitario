@@ -10,6 +10,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='accounts:login'), name='logout'),
     path('register/success/', register_success, name='register_success'),
     path('profile/', profile, name='profile'),
+    path('admin_home/', admin_home, name='admin_home'),
 
 
 ]

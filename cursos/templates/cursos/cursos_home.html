@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Gerenciamento de Cursos</h1>
+        <p class="admin-subtitle">Aqui você pode gerenciar os cursos oferecidos pela universidade.</p>
+
+        <div class="admin-grid">
+            <div class="admin-card">
+                <img src="{% static 'core/icons/add-course.svg' %}" alt="Adicionar Curso" class="admin-image">
+                <p>Adicionar Curso</p>
+            </div>
+        </div>
+    <br>
+    <a href="{% url 'accounts:admin_home' %}">
+        <button>Voltar ao Painel de Administração</button>
+    </a>
+    </div>
+</body>
+</html>

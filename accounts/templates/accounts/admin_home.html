@@ -19,8 +19,10 @@
                 <p>Gerenciamento de Usuários</p>
             </div>
             <div class="admin-card">
-                <img src="{% static 'core/icons/course-management.svg' %}" alt="Gerenciamento de Cursos" class="admin-image">
-                <p>Gerenciamento de Cursos</p>
+                <a href="{% url 'cursos:cursos_home' %}">
+                    <img src="{% static 'core/icons/course-management.svg' %}" alt="Gerenciamento de Cursos" class="admin-image">
+                    <p>Gerenciamento de Cursos</p>
+                </a>
             </div>
             <div class="admin-card">
                 <img src="{% static 'core/icons/settings.svg' %}" alt="Configurações do Sistema" class="admin-image">
