@@ -1,0 +1,15 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    Registro realizado com sucesso! Você já pode
+    <button><a href="{% url 'accounts:login' %}" style="text-decoration: none; color: #9FD996;"><strong>Fazer login</strong></a></button>
+</body>
+</html>

@@ -20,7 +20,8 @@ class User(AbstractUser):
     nome = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
     data_nascimento = models.DateField(null=True, blank=False)
-    usuario = models.CharField(max_length=150, unique=True)
+    username = models.CharField(max_length=150, unique=True)
+
 
     role=models.CharField(max_length=20, choices=ROLE_CHOICES, blank=False)
     nivel=models.CharField(max_length=20, choices=NIVEL_CHOICES, blank=False)

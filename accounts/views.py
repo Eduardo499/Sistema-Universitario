@@ -12,3 +12,6 @@ def register(request):
     else:
         form = CustomUserCreationForm()
     return render(request, 'accounts/register.html', {'form': form, 'role': request.POST.get('role') or form.initial.get('role')})
+
+def register_success(request):
+    return render(request, 'accounts/register_success.html')
