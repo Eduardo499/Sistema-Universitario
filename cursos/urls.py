@@ -15,4 +15,8 @@ urlpatterns = [
     path('cursos/disciplinas/editar/<int:disciplina_id>/', editar_disciplina, name='editar_disciplina'),
     path('cursos/disciplinas/excluir/<int:disciplina_id>/', excluir_disciplina, name='excluir_disciplina'),
     path('cursos/disciplinas/info/<int:disciplina_id>/', info_disciplina, name='info_disciplina'),
+    path('cursos/gerenciar_grade_curricular/<int:curso_id>/', gerenciar_grade_curricular, name='gerenciar_grade_curricular'),
+    path('cursos/grade/remover/<int:grade_id>/', remover_grade_curricular, name='remover_grade_curricular'),
+    path('cursos/baixar_grade/<int:curso_id>/', baixar_grade_curricular, name='baixar_grade_curricular'),
+
 ]

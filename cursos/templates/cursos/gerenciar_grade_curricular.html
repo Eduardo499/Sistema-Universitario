@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Gerenciar Grade Curricular</h1>
+        <p class="admin-subtitle">Aqui você pode adicionar, editar ou remover disciplinas da grade curricular do curso.</p>
+
+        <div class="form-grade">
+        <form method="post">
+            {% csrf_token %}
+            <select name="disciplina">
+                <option value="">
+                    Selecione uma disciplina para adicionar à grade curricular
+                </option>
+                {% for disciplina in disciplinas %}
+                    <option value="{{ disciplina.id }}">
+                        {{ disciplina.nome }}
+                    </option>
+                {% endfor %}
+            </select>
+            <select name="semestre">
+                <option value="">Selecione o semestre</option>
+                {% for semestre in semestres %}
+                    <option value="{{ semestre }}">Semestre {{ semestre }}</option>
+                {% endfor %}
+            </select>
+            <button type="submit">Adicionar à Grade Curricular</button>
+        </form>
+        </div>
+
+        <br>
+
+        {% regroup grade_curricular by semestre as grade_por_semestre %}
+        {% for grupo in grade_por_semestre %}
+        <table>
+            <thead>
+                <tr>
+                    <th>
+                        {{ grupo.grouper }}º Semestre
+                    </th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in grupo.list %}
+                <tr>
+                    <td>{{ item.disciplina.nome }}</td>
+                    <td>
+                        <form method="post" action="{% url 'cursos:remover_grade_curricular' item.id %}">
+                            {% csrf_token %}
+                            <button type="submit">Remover</button>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        {% empty %}
+            <p>Nenhuma disciplina adicionada à grade curricular.</p>
+        {% endfor %}
+
+    <a href="{% url 'cursos:info_curso' curso.id %}">
+        <button>Voltar às Informações do Curso</button>
+    </a>
+    </div>
+</body>
+</html>

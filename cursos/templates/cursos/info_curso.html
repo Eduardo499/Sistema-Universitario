@@ -19,8 +19,22 @@
             <p><strong>Duração (semestres):</strong> {{ curso.qtd_semestres }}</p>
         </div>
 
-        Ver grade curricular e turmas associadas (em desenvolvimento)
+    <br>
 
+    <div class="admin-grid">
+    <a href="{% url 'cursos:gerenciar_grade_curricular' curso.pk %}">
+        <div class="admin-card">
+            <img src="{% static 'core/icons/manage-grade.svg' %}" alt="Gerenciar Grade Curricular" class="admin-image">
+            <p>Gerenciar Grade</p>
+        </div>
+    </a>
+    <a href="{% url 'cursos:baixar_grade_curricular' curso.pk %}" target="_blank">
+        <div class="admin-card">
+            <img src="{% static 'core/icons/download.svg' %}" alt="Baixar Grade Curricular" class="admin-image">
+            <p>Baixar Grade Curricular</p>
+        </div>
+    </a>
+    </div>
     <br>
 
     <a href="{% url 'cursos:gerenciar_cursos' %}">

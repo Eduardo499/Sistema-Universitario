@@ -27,3 +27,14 @@ class Disciplina(models.Model):
 
     def __str__(self):
         return self.nome
+    
+class GradeCurricular(models.Model):
+    curso = models.ForeignKey(Curso, on_delete=models.CASCADE, related_name='grade')
+    disciplina = models.ForeignKey(Disciplina, on_delete=models.CASCADE)
+    semestre = models.IntegerField()
+
+    class Meta:
+        unique_together = ('curso', 'disciplina', 'semestre')
+
+    def __str__(self):
+        return f"{self.curso.nome} - {self.disciplina.nome} (Semestre {self.semestre})"

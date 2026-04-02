@@ -1,6 +1,13 @@
 from django.shortcuts import render, redirect
 from .forms import *
 from .models import *
+from reportlab.lib.pagesizes import A4
+from reportlab.lib import colors
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
+from django.http import HttpResponse
+from itertools import groupby
+
 
 # Create your views here.
 def cursos(request):
@@ -77,3 +84,77 @@ def editar_disciplina(request, disciplina_id):
 def info_disciplina(request, disciplina_id):
     disciplina = Disciplina.objects.get(id=disciplina_id)
     return render(request, 'cursos/info_disciplina.html', {'disciplina': disciplina})
+
+def gerenciar_grade_curricular(request, curso_id):
+    curso = Curso.objects.get(id=curso_id)
+    grade_curricular = GradeCurricular.objects.filter(curso=curso).order_by('semestre')
+    disciplinas_na_grade = list(grade_curricular.values_list('disciplina_id', flat=True))
+    disciplinas_disponiveis = Disciplina.objects.filter(curso=curso).exclude(id__in=disciplinas_na_grade)
+
+    erro = None
+
+    if request.method == 'POST':
+        disciplina_id = request.POST.get('disciplina')
+        semestre = request.POST.get('semestre')
+
+        if disciplina_id and semestre:
+            disciplina = Disciplina.objects.get(id=disciplina_id)
+            ja_existe = GradeCurricular.objects.filter(curso=curso, disciplina=disciplina).exists()  # sem semestre
+            if ja_existe:
+                erro = f'A disciplina "{disciplina.nome}" já está na grade curricular.'
+            else:
+                GradeCurricular.objects.create(curso=curso, disciplina=disciplina, semestre=semestre)
+                return redirect('cursos:gerenciar_grade_curricular', curso_id=curso.id)
+
+    return render(request, 'cursos/gerenciar_grade_curricular.html', {
+        'curso': curso,
+        'disciplinas': disciplinas_disponiveis,  # só as disponíveis
+        'grade_curricular': grade_curricular,
+        'semestres': range(1, curso.qtd_semestres + 1),
+        'erro': erro
+    })
+
+def remover_grade_curricular(request,grade_id):
+    grade = GradeCurricular.objects.get(id=grade_id)
+    curso_id = grade.curso.id
+    grade.delete()
+    return redirect('cursos:gerenciar_grade_curricular', curso_id=curso_id)
+
+def baixar_grade_curricular(request, curso_id):
+    curso = Curso.objects.get(id=curso_id)
+    grade_curricular = GradeCurricular.objects.filter(curso=curso).order_by('semestre')
+
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = f'inline; filename="grade_curricular_{curso.nome}.pdf"'
+
+    doc = SimpleDocTemplate(response, pagesize=A4)
+    styles = getSampleStyleSheet()
+    elements = []
+
+    title = Paragraph(f"Grade Curricular - {curso.nome} ({curso.get_grau_display()})", styles['Title'])
+    elements.append(title)
+    elements.append(Spacer(1, 12))
+
+    data = [['Semestre', 'Disciplina']]
+    for semestre, disciplinas in groupby(grade_curricular, key=lambda x: x.semestre):
+        for grade in disciplinas:
+            data.append([f'Semestre {semestre}', grade.disciplina.nome])
+
+    table = Table(data, colWidths=[100, 400])
+    table.setStyle(TableStyle([
+        ('BACKGROUND', (0, 0), (-1, 0), colors.HexColor('#1e293b')),
+        ('TEXTCOLOR', (0, 0), (-1, 0), colors.white),
+        ('ALIGN', (0, 0), (-1, -1), 'LEFT'),
+        ('FONTNAME', (0, 0), (-1, 0), 'Helvetica-Bold'),
+        ('FONTSIZE', (0, 0), (-1, 0), 14),
+        ('BOTTOMPADDING', (0, 0), (-1, 0), 12),
+        ('BACKGROUND', (0, 1), (-1, -1), colors.HexColor('#2d1515')),
+        ('TEXTCOLOR', (0, 1), (-1, -1), colors.white),
+        ('FONTNAME', (0, 1), (-1, -1), 'Helvetica'),
+        ('FONTSIZE', (0, 1), (-1, -1), 12),
+        ('GRID', (0, 0), (-1, -1), 1, colors.HexColor('#444444')),
+    ]))
+    elements.append(table)
+
+    doc.build(elements)
+    return response

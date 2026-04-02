@@ -5,9 +5,10 @@ body {
     text-align: center;
     justify-content: center;
     align-items: center;
-    height: 100vh;
     display: flex;
     flex-direction: column;
+    min-height: 90vh;
+
     
 }
 
@@ -279,4 +280,14 @@ tbody tr:last-child {
 .btn-link:hover {
     color: #e74c3c;
     background: none;
+}
+
+.form-grade {
+    background: #2d1515;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    margin: 20px auto;
+    width: 455px; /* ou qualquer valor */
 }
