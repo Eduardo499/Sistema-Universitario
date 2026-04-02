@@ -14,10 +14,24 @@
         <p class="admin-subtitle">Aqui você pode gerenciar os cursos oferecidos pela universidade.</p>
 
         <div class="admin-grid">
-            <div class="admin-card">
-                <img src="{% static 'core/icons/add-course.svg' %}" alt="Adicionar Curso" class="admin-image">
-                <p>Adicionar Curso</p>
-            </div>
+            <a href="{% url 'cursos:gerenciar_cursos' %}">
+                <div class="admin-card">
+                    <img src="{% static 'core/icons/manage-course.svg' %}" alt="Gerenciar Cursos" class="admin-image">
+                    <p>Gerenciar Cursos</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="admin-card">
+                    <img src="{% static 'core/icons/manage-discipline.svg' %}" alt="Gerenciar Disciplinas" class="admin-image">
+                    <p>Gerenciar Disciplinas</p>
+                </div>
+            </a>
+            <a href="">
+                <div class="admin-card">
+                    <img src="{% static 'core/icons/manage-class.svg' %}" alt="Gerenciar Turmas" class="admin-image">
+                    <p>Gerenciar Turmas</p>
+                </div>
+            </a>
         </div>
     <br>
     <a href="{% url 'accounts:admin_home' %}">

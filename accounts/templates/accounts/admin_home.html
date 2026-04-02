@@ -14,22 +14,24 @@
         <p class="admin-subtitle">Bem-vindo ao painel de administrador.</p>
 
         <div class="admin-grid">
+            <a href="">
             <div class="admin-card">
                 <img src="{% static 'core/icons/user-management.svg' %}" alt="Gerenciamento de Usuários" class="admin-image">
                 <p>Gerenciamento de Usuários</p>
             </div>
-            <div class="admin-card">
-                <a href="{% url 'cursos:cursos_home' %}">
+            </a>
+            <a href="{% url 'cursos:cursos_home' %}">
+                <div class="admin-card">  
                     <img src="{% static 'core/icons/course-management.svg' %}" alt="Gerenciamento de Cursos" class="admin-image">
                     <p>Gerenciamento de Cursos</p>
-                </a>
-            </div>
+                </div>
+            </a>
+            <a href="">
             <div class="admin-card">
                 <img src="{% static 'core/icons/settings.svg' %}" alt="Configurações do Sistema" class="admin-image">
                 <p>Configurações do Sistema</p>
             </div>
-
-        
+            </a>
     </div>
 
     <br>

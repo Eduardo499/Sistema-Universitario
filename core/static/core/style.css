@@ -134,7 +134,7 @@ button:hover {
 
 .admin-card {
     background: #2d1515;
-    padding: 20px;
+    padding: 25px;
     border-radius: 10px;
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     text-align: center;
@@ -210,4 +210,73 @@ input[type="date"] {
     padding: 10px;
     border-radius: 5px;
     width: 100%;
+}
+
+.add-card {
+    background: #2d1515;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    text-align: center;
+    cursor: pointer;
+    margin: 20px auto;
+    width: 455px; /* ou qualquer valor */
+}
+
+.add-card:hover {
+    background: #3e1f1f;
+}
+
+.add-card img {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 10px;
+}
+
+.add-card p {
+    color: #9FD996;
+    font-size: 0.95rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+thead {
+    background-color: #49A671;
+    color: #1e293b;
+}
+
+th, td {
+    padding: 12px 16px;
+    text-align: left;
+}
+
+tbody tr {
+    border-bottom: 1px solid #2d4a5e;
+}
+
+tbody tr:hover {
+    background-color: #223240;
+}
+
+tbody tr:last-child {
+    border-bottom: none;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: #ff6b6b;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0;
+    margin: 0;
+}
+
+.btn-link:hover {
+    color: #e74c3c;
+    background: none;
 }

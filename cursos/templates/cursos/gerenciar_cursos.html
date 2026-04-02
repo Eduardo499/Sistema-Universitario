@@ -1,0 +1,64 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Gerenciar Cursos</h1>
+        <p class="admin-subtitle">Aqui você pode adicionar, editar ou remover cursos oferecidos pela universidade.</p>
+
+        <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Grau</th>
+                        <th>Duração (semestres)</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for curso in cursos %}
+                    <tr>
+                        <td>{{ curso.nome }}</td>
+                        <td>{{ curso.get_grau_display }}</td>
+                        <td>{{ curso.qtd_semestres }}</td>
+                        <td>
+                            <form method="post" action="{% url 'cursos:excluir_curso' curso.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-link">Excluir</button>
+                            </form>
+                            <a href="{% url 'cursos:editar_curso' curso.id %}">Editar</a>
+                            <a href="">Informações</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Nenhum curso cadastrado.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+        </table>
+        <div class="admin-grid">
+            
+            <a href="{% url 'cursos:adicionar_curso' %}">
+                <div class="add-card">
+                    <img src="{% static 'core/icons/add.svg' %}" alt="Adicionar Curso" class="admin-image">
+                    <p>Adicionar Curso</p>
+                </div>
+            </a>
+        </div>
+
+    <br>
+
+    <a href="{% url 'cursos:cursos_home' %}">
+        <button>Voltar ao Gerenciamento de Cursos</button>
+    </a>
+    </div>
+</body>
+</html>
