@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Gerenciamento de Disciplinas</h1>
+        <p class="admin-subtitle">Aqui você pode gerenciar as disciplinas oferecidas pela universidade.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome da Disciplina</th>
+                    <th>Curso</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for disciplina in disciplinas %}
+                    <tr>
+                        <td>{{ disciplina.nome }}</td>
+                        <td>{{ disciplina.curso.nome }} — {{ disciplina.curso.get_grau_display }}</td>
+                        <td>
+                            <form method="post" action="{% url 'cursos:excluir_disciplina' disciplina.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-link">Excluir</button>
+                            </form> |
+                            <a href="{% url 'cursos:editar_disciplina' disciplina.id %}">Editar</a>
+                            |
+                            <a href="{% url 'cursos:info_disciplina' disciplina.id %}">Ver Detalhes</a>
+                        </td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3">Nenhuma disciplina cadastrada.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <div class="admin-grid">
+            
+            <a href="{% url 'cursos:adicionar_disciplina' %}">
+                <div class="add-card">
+                    <img src="{% static 'core/icons/add.svg' %}" alt="Adicionar Disciplina" class="admin-image">
+                    <p>Adicionar Disciplina</p>
+                </div>
+            </a>
+        </div>
+
+    <br>
+    <a href="{% url 'cursos:cursos_home' %}">
+        <button>Voltar ao Gerenciamento de Cursos</button>
+    </a>
+    </div>
+</body>
+</html>

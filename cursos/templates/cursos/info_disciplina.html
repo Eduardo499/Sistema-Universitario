@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Informações da Disciplina</h1>
+        <p class="admin-subtitle">Aqui estão as informações detalhadas sobre a disciplina selecionada.</p>
+
+        <div class="course-info">
+            <p><strong>Nome:</strong> {{ disciplina.nome }}</p>
+            <p><strong>Curso:</strong> {{ disciplina.curso.nome }}</p>
+            <p><strong>Grau:</strong> {{ disciplina.curso.get_grau_display }}</p>
+        </div>
+
+        Ver turmas associadas (em desenvolvimento)
+
+    <br>
+
+    <a href="{% url 'cursos:gerenciar_cursos' %}">
+        <button>Voltar ao Gerenciamento de Cursos</button>
+    </div>
+</body>
+</html>
