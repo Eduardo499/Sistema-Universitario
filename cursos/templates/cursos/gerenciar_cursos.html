@@ -34,7 +34,7 @@
                                 <button type="submit" class="btn-link">Excluir</button>
                             </form>
                             <a href="{% url 'cursos:editar_curso' curso.id %}">Editar</a>
-                            <a href="">Informações</a>
+                            <a href="{% url 'cursos:info_curso' curso.id %}">Informações</a>
                         </td>
                     </tr>
                     {% empty %}

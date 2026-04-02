@@ -37,3 +37,7 @@ def excluir_curso(request, curso_id):
         curso.delete()
         return redirect('cursos:gerenciar_cursos')
     return render(request, 'cursos/gerenciar_cursos.html', {'curso': curso})
+
+def info_curso(request, curso_id):
+    curso = Curso.objects.get(id=curso_id)
+    return render(request, 'cursos/info_curso.html', {'curso': curso})
