@@ -1,0 +1,49 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Informações da Turma</h1>
+        <p class="admin-subtitle">Aqui estão as informações detalhadas sobre a turma selecionada.</p>
+
+        <div class="course-info">
+            <p><strong>Nome:</strong> {{ turma.nome }}</p>
+            <p><strong>Curso:</strong> {{ turma.curso }} — {{ turma.curso.get_grau_display }}</p>
+            <p><strong>Ano:</strong> {{ turma.ano }}</p>
+            <p><strong>Semestre:</strong> {{ turma.semestre }}</p>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Disciplina</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for grade in grades %}
+                <tr>
+                    <td>{{ grade.disciplina.nome }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="1">Nenhuma disciplina associada a esta turma.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+    <br>
+
+    <a href="{% url 'cursos:gerenciar_turmas' %}">
+        <button>Voltar ao Gerenciamento de Turmas</button>
+    </a>
+    </div>
+</body>
+</html>

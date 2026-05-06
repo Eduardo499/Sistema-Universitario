@@ -18,5 +18,10 @@ urlpatterns = [
     path('cursos/gerenciar_grade_curricular/<int:curso_id>/', gerenciar_grade_curricular, name='gerenciar_grade_curricular'),
     path('cursos/grade/remover/<int:grade_id>/', remover_grade_curricular, name='remover_grade_curricular'),
     path('cursos/baixar_grade/<int:curso_id>/', baixar_grade_curricular, name='baixar_grade_curricular'),
+    path('cursos/turmas/', gerenciar_turmas, name='gerenciar_turmas'),
+    path('cursos/turmas/adicionar/', adicionar_turma, name='adicionar_turma'),
+    path('cursos/turmas/editar/<int:turma_id>/', editar_turma, name='editar_turma'),
+    path('cursos/turmas/excluir/<int:turma_id>/', excluir_turma, name='excluir_turma'),
+    path('cursos/turmas/info/<int:turma_id>/', info_turma, name='info_turma'),
 
 ]

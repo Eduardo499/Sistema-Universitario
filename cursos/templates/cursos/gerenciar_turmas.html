@@ -1,0 +1,70 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema Universitário</title>
+    <link rel="stylesheet" href="{% static 'core/style.css' %}">
+</head>
+<body>
+    <div class="admin-container">
+        <h1>Gerenciar Turmas</h1>
+        <p class="admin-subtitle">Aqui você pode gerenciar as turmas associadas às disciplinas do curso.</p>
+
+        <table>
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Curso</th>
+                        <th>Ano</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for turma in turmas %}
+                    <tr>
+                        <td>{{ turma.nome }}</td>
+                        <td>{{ turma.curso.nome }} — {{ turma.curso.get_grau_display }}</td>
+                        <td>{{ turma.ano }}</td>
+                        <td>
+                            <form method="post" action="{% url 'cursos:excluir_turma' turma.id %}" style="display:inline;">
+                                {% csrf_token %}
+                                <button type="submit" class="btn-link">Excluir</button>
+                            </form>
+                            |
+                            <a href="{% url 'cursos:editar_turma' turma.id %}">Editar</a>
+                            |
+                            <a href="{% url 'cursos:info_turma' turma.id %}">Informações</a>
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="4">Nenhuma turma cadastrada.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        <div class="admin-grid">
+            <a href="{% url 'cursos:adicionar_turma' %}">
+                <div class="add-card">
+                    
+                
+                        <img src="{% static 'core/icons/add.svg' %}" alt="Adicionar Turma" class="admin-image">
+                        <p>Adicionar Turma</p>
+                    
+                </div>
+            </a>
+        </div>
+            
+
+    <br>
+
+    <a href="{% url 'cursos:cursos_home' %}">
+        <button>Voltar ao Gerenciamento de Cursos</button>
+    </a>
+
+    </div>
+</body>
+</html>

@@ -158,3 +158,47 @@ def baixar_grade_curricular(request, curso_id):
 
     doc.build(elements)
     return response
+
+def gerenciar_turmas(request):
+    turmas = Turma.objects.all()
+    return render(request, 'cursos/gerenciar_turmas.html', {'turmas': turmas})
+
+def adicionar_turma(request):
+    if request.method == 'POST':
+        form = CustomTurmaForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('cursos:gerenciar_turmas')
+    else:
+        form = CustomTurmaForm()
+    return render(request, 'cursos/adicionar_turma.html', {'form': form})
+
+def excluir_turma(request, turma_id):
+    turma = Turma.objects.get(id=turma_id)
+    if request.method == 'POST':
+        turma.delete()
+        return redirect('cursos:gerenciar_turmas')
+    return render(request, 'cursos/gerenciar_turmas.html', {'turma': turma})
+
+def editar_turma(request, turma_id):
+    turma = Turma.objects.get(id=turma_id)
+    if request.method == 'POST':
+        form = CustomTurmaForm(request.POST, instance=turma)
+        if form.is_valid():
+            form.save()
+            return redirect('cursos:gerenciar_turmas')
+    else:
+        form = CustomTurmaForm(instance=turma)
+    return render(request, 'cursos/adicionar_turma.html', {'form': form, 'turma': turma})
+
+def info_turma(request, turma_id):
+    turma = Turma.objects.get(id=turma_id)
+    grades = GradeCurricular.objects.filter(
+        curso=turma.curso,
+        semestre=turma.semestre
+    ).select_related('disciplina')
+    
+    print("TURMA:", turma)
+    print("GRADES:", grades)  # veja no terminal do servidor
+    
+    return render(request, 'cursos/info_turma.html', {'turma': turma, 'grades': grades})

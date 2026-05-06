@@ -1,5 +1,5 @@
 from django import forms
-from .models import Curso, Disciplina
+from .models import Curso, Disciplina, Turma
 
 class CustomForm(forms.ModelForm):
     class Meta:
@@ -42,4 +42,32 @@ class CustomDisciplinaForm(forms.ModelForm):
 
         if Disciplina.objects.filter(nome=nome, curso=curso).exists():
             raise forms.ValidationError("Já existe uma disciplina com esse nome para o curso selecionado.")
+        return cleaned_data
+    
+class CustomTurmaForm(forms.ModelForm):
+    curso = CursoChoiceField(queryset=Curso.objects.all())
+    class Meta:
+        model = Turma
+        fields = [
+            'nome',
+            'curso',
+            'ano',
+            'semestre',
+        ]
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['curso'].choices = [
+            choice for choice in self.fields['curso'].choices if choice[0] != ''
+        ]
+
+    def clean(self):
+        cleaned_data = super().clean()
+        nome = cleaned_data.get('nome')
+        curso = cleaned_data.get('curso')
+        ano = cleaned_data.get('ano')
+        semestre = cleaned_data.get('semestre')
+
+        if Turma.objects.filter(nome=nome, curso=curso, ano=ano).exists():
+            raise forms.ValidationError("Já existe uma turma com esse nome para o curso selecionado.")
         return cleaned_data
