@@ -83,7 +83,9 @@ def editar_disciplina(request, disciplina_id):
 
 def info_disciplina(request, disciplina_id):
     disciplina = Disciplina.objects.get(id=disciplina_id)
-    return render(request, 'cursos/info_disciplina.html', {'disciplina': disciplina})
+    grades = GradeCurricular.objects.filter(disciplina=disciplina).select_related('curso').order_by('semestre')
+    turmas = Turma.objects.filter(curso__grade__disciplina=disciplina, semestre__in=grades.values('semestre')).distinct()
+    return render(request, 'cursos/info_disciplina.html', {'disciplina': disciplina, 'grades': grades, 'turmas': turmas})
 
 def gerenciar_grade_curricular(request, curso_id):
     curso = Curso.objects.get(id=curso_id)
