@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="admin-container">
+        <h1>Gerenciar Usuários</h1>
+        <p>Aqui você pode gerenciar os alunos, professores e administradores.</p>
+        <div class="admin-grid">
+            <div class="admin-card">
+                <img src="{% static 'core/icons/student.svg' %}" alt="Gerenciar Alunos" class="admin-image">
+                <p>Gerenciar Alunos</p>
+            </div>
+            <div class="admin-card">
+                <img src="{% static 'core/icons/owl.svg' %}" alt="Gerenciar Professores" class="admin-image">
+                <p>Gerenciar Professores</p>
+            </div>
+            <div class="admin-card">
+                <img src="{% static 'core/icons/admin.svg' %}" alt="Gerenciar Administradores" class="admin-image">
+                <p>Gerenciar Administradores</p>
+            </div>  
+        </div>
+        <br>
+        <a href="{% url 'accounts:admin_home' %}">
+            <button>Voltar ao Painel de Administração</button>
+        </a>
+    </div>
+{% endblock %}
