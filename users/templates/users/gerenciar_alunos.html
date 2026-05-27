@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+    <div class="admin-container">
+        <h1>Gerenciar Alunos</h1>
+        <p>Aqui você pode ver os alunos cadastrados, criar novas matrículas ou editar informações existentes.</p>
+
+        <div class="admin-grid">
+            <div class="admin-card">
+                <a href="">
+                <img src="{% static 'core/icons/student.svg' %}" alt="Ver Alunos" class="admin-image">
+                <p>Ver Alunos</p>
+                </a>
+            </div>
+            <div class="admin-card">
+                <a href="">
+                <img src="{% static 'core/icons/enrollment.svg' %}" alt="Criar Matrícula" class="admin-image">
+                <p>Criar Matrícula</p>
+                </a>
+            </div>
+            <div class="admin-card">
+                <a href="">
+                <img src="{% static 'core/icons/edit.svg' %}" alt="Editar Aluno" class="admin-image">
+                <p>Editar Aluno</p>
+                </a>
+            </div>
+        </div>
+
+        <br>
+        <a href="{% url 'accounts:admin_home' %}">
+            <button>Voltar ao Painel de Administração</button>
+        </a>
+    </div>
+{% endblock %}

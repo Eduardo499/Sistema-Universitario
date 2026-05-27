@@ -7,16 +7,22 @@
         <p>Aqui você pode gerenciar os alunos, professores e administradores.</p>
         <div class="admin-grid">
             <div class="admin-card">
+                <a href="{% url 'users:gerenciar_alunos' %}">
                 <img src="{% static 'core/icons/student.svg' %}" alt="Gerenciar Alunos" class="admin-image">
                 <p>Gerenciar Alunos</p>
+                </a>
             </div>
             <div class="admin-card">
+                <a href="">
                 <img src="{% static 'core/icons/owl.svg' %}" alt="Gerenciar Professores" class="admin-image">
                 <p>Gerenciar Professores</p>
+                </a>
             </div>
             <div class="admin-card">
+                <a href="">
                 <img src="{% static 'core/icons/admin.svg' %}" alt="Gerenciar Administradores" class="admin-image">
                 <p>Gerenciar Administradores</p>
+                </a>
             </div>  
         </div>
         <br>
