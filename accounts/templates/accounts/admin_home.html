@@ -1,14 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Universitário</title>
-    <link rel="stylesheet" href="{% static 'core/style.css' %}">
-</head>
-<body>
+{% block content %}
     <div class="admin-container">
         <h1>Olá, {{ user.username }}!</h1>
         <p class="admin-subtitle">Bem-vindo ao painel de administrador.</p>
@@ -26,7 +19,7 @@
                     <p>Gerenciamento de Cursos</p>
                 </div>
             </a>
-            <a href="">
+            <a href="{% url 'configs:configs_home' %}">
             <div class="admin-card">
                 <img src="{% static 'core/icons/settings.svg' %}" alt="Configurações do Sistema" class="admin-image">
                 <p>Configurações do Sistema</p>
@@ -40,5 +33,4 @@
             {% csrf_token %}
             <button type="submit">Sair</button>
     </form>
-</body>
-</html>
+{% endblock %}

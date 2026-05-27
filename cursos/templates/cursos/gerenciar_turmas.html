@@ -1,14 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Universitário</title>
-    <link rel="stylesheet" href="{% static 'core/style.css' %}">
-</head>
-<body>
+{% block content %}
     <div class="admin-container">
         <h1>Gerenciar Turmas</h1>
         <p class="admin-subtitle">Aqui você pode gerenciar as turmas associadas às disciplinas do curso.</p>
@@ -66,5 +59,4 @@
     </a>
 
     </div>
-</body>
-</html>
+{% endblock %}

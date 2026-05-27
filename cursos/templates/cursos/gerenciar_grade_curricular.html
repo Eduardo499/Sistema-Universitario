@@ -1,14 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Universitário</title>
-    <link rel="stylesheet" href="{% static 'core/style.css' %}">
-</head>
-<body>
+{% block content %}
     <div class="admin-container">
         <h1>Gerenciar Grade Curricular</h1>
         <p class="admin-subtitle">Aqui você pode adicionar, editar ou remover disciplinas da grade curricular do curso.</p>
@@ -72,5 +65,4 @@
         <button>Voltar às Informações do Curso</button>
     </a>
     </div>
-</body>
-</html>
+{% endblock %}

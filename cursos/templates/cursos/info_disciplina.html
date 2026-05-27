@@ -1,14 +1,7 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Universitário</title>
-    <link rel="stylesheet" href="{% static 'core/style.css' %}">
-</head>
-<body>
+{% block content %}
     <div class="admin-container">
         <h1>Informações da Disciplina</h1>
         <p class="admin-subtitle">Aqui estão as informações detalhadas sobre a disciplina selecionada.</p>
@@ -44,5 +37,4 @@
         <button>Voltar ao Gerenciamento de Disciplinas</button>
     </a>
     </div>
-</body>
-</html>
+{% endblock %}

@@ -1,18 +1,10 @@
+{% extends 'base.html' %}
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sistema Universitário</title>
-    <link rel="stylesheet" href="{% static 'core/style.css' %}">
-</head>
-<body>
+{% block content %}
     Oi, {{ user.username }}! Bem-vindo ao seu painel de aluno. Aqui você pode acessar suas disciplinas, notas e comunicados importantes.
     <form method="post" action="{% url 'accounts:logout' %}">
         {% csrf_token %}
         <button type="submit">Sair</button>
     </form>
-</body>
-</html>
+{% endblock %}
